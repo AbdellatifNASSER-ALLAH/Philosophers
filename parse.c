@@ -14,6 +14,8 @@
 
 int	parse(int ac, char **av)
 {
+	(void)av;
 	if (!(ac > 4 && ac < 7))
 		return (write(2, "error parsing\n", 14), 0);
+	return (1);
 }
