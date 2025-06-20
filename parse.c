@@ -12,6 +12,8 @@
 
 #include "header.h"
 
-int	parse(int ac, char *av)
+int	parse(int ac, char **av)
 {
+	if (!(ac > 4 && ac < 7))
+		return (write(2, "error parsing\n", 14), 0);
 }

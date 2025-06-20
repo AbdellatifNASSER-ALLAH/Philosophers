@@ -12,7 +12,7 @@
 
 #include "header.h"
 
-int	main(int ac, char *av)
+int	main(int ac, char **av)
 {
 	if (!parse(ac, av))
 		return (1);

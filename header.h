@@ -20,6 +20,6 @@
 #include <pthread.h>
 #include <sys/time.h>
 
-int	parse(int ac, char *av);
+int	parse(int ac, char **av);
 
 #endif
