@@ -19,3 +19,17 @@ int	parse(int ac, char **av)
 		return (write(2, "error parsing\n", 14), 0);
 	return (1);
 }
+
+long	ft_atoi(char *nb)
+{
+	long	res;
+
+	res = 0;
+	if (!(*nb && *nb >= '0' && *nb <= '9'))
+		return (-1);
+	while (*nb && *nb >= '0' && *nb <= '9')
+		res = res * 10 + (*nb++ - 48);
+	if (*nb || res > 2147483647 || res < 0)
+		return (-1);
+	return (res);
+}

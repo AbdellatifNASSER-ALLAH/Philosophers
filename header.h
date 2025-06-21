@@ -21,5 +21,6 @@
 #include <sys/time.h>
 
 int	parse(int ac, char **av);
+long	ft_atoi(char *nb);
 
 #endif
