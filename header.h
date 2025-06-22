@@ -20,7 +20,17 @@
 #include <pthread.h>
 #include <sys/time.h>
 
-int	parse(int ac, char **av);
+//=== Data types
+typedef	struct s_data {
+	int	number_of_philosopher;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	number_of_times_each_philosopher_must_eat;
+}	t_data;
+
+//=== Parsing
+t_data	parse(int ac, char **av);
 long	ft_atoi(char *nb);
 
 #endif
