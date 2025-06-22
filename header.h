@@ -30,7 +30,7 @@ typedef	struct s_data {
 }	t_data;
 
 //=== Parsing
-t_data	parse(int ac, char **av);
+int	parse(int ac, char **av, t_data *data);
 long	ft_atoi(char *nb);
 
 #endif

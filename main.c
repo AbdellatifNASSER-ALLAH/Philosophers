@@ -14,7 +14,9 @@
 
 int	main(int ac, char **av)
 {
-	if (!parse(ac, av))
+	t_data	data;
+
+	if (!parse(ac, av, &data))
 		return (1);
 	return (0);
 }
