@@ -10,27 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HEADER_H	
-#define HEADER_H
+#ifndef HEADER_H
+# define HEADER_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <pthread.h>
-#include <sys/time.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <sys/time.h>
+# include <unistd.h>
 
 //=== Data types
-typedef	struct s_data {
+typedef struct s_data
+{
 	int	number_of_philosopher;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	number_of_times_each_philosopher_must_eat;
-}	t_data;
+}		t_data;
 
 //=== Parsing
-int	parse(int ac, char **av, t_data *data);
+void	ft_instructions(void);
+int		parse(int ac, char **av, t_data *data);
 long	ft_atoi(char *nb);
 
 #endif

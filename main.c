@@ -17,6 +17,9 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (!parse(ac, av, &data))
+	{
+		ft_instructions();
 		return (1);
+	}
 	return (0);
 }

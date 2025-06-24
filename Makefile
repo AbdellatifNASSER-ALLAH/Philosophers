@@ -24,5 +24,8 @@ fclean: clean
 
 re: fclean all
 
+d:
+	gdbgui ./$(NAME)
+
 .PHONY: all clean fclean re
 .SECONDARY: $(OBJ)
