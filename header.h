@@ -13,6 +13,9 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+// Macros
+# define MALLOC_ERR 1
+
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -34,5 +37,8 @@ typedef struct s_data
 void	ft_instructions(void);
 int		parse(int ac, char **av, t_data *data);
 long	ft_atoi(char *nb);
+
+//=== Initialisation of the Data
+int		init_data(t_data *data);
 
 #endif

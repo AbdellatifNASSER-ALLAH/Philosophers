@@ -21,5 +21,7 @@ int	main(int ac, char **av)
 		ft_instructions();
 		return (1);
 	}
+	if (init_data(&data))
+		return (MALLOC_ERR);
 	return (0);
 }
