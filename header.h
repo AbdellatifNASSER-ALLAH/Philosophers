@@ -24,13 +24,33 @@
 # include <unistd.h>
 
 //=== Data types
+typedef enum e_status 
+{
+	THINK,
+	SLEEP,
+	EAT
+}	t_status;
+
+
+typedef struct s_data t_data;
+
+typedef struct	s_philo
+{
+	t_data	*data;
+	int	id;
+	int	ate;
+	int	dead;
+	t_status	st;
+}	t_philo;
+
 typedef struct s_data
 {
-	int	number_of_philosopher;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_of_times_each_philosopher_must_eat;
+	int	nb_philos;
+	int	tdie;
+	int	teat;
+	int	tsleep;
+	int	nb_time_philo_must_eat;
+	t_philo	**philo;
 }		t_data;
 
 //=== Parsing

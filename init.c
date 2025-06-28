@@ -14,5 +14,6 @@
 
 int	init_data(t_data *data)
 {
+	(void)data;
 	return (0);
 }
