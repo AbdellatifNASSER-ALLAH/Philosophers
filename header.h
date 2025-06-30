@@ -22,14 +22,15 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
+# include <time.h>
 
 //=== Data types
-typedef enum e_status 
+typedef enum e_state 
 {
 	THINK,
 	SLEEP,
 	EAT
-}	t_status;
+}	t_state;
 
 
 typedef struct s_data t_data;
@@ -38,19 +39,24 @@ typedef struct	s_philo
 {
 	t_data	*data;
 	int	id;
-	int	ate;
-	int	dead;
-	t_status	st;
+	int	nb_ate;
+	pthread_mutex_t	mt_nb_ate;
+	t_state	st;
+	pthread_mutex_t	mt_st;
+	pthread_mutex_t	*left_f;
+	pthread_mutex_t	*right_f;
 }	t_philo;
 
 typedef struct s_data
 {
+	time	start_time;
 	int	nb_philos;
 	int	tdie;
 	int	teat;
 	int	tsleep;
-	int	nb_time_philo_must_eat;
-	t_philo	**philo;
+	int	nb_meals;
+	t_philo	*philos;
+	pthread_mutex_t	*forks;
 }		t_data;
 
 //=== Parsing
