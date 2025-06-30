@@ -17,10 +17,7 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (!parse(ac, av, &data))
-	{
-		ft_instructions();
-		return (1);
-	}
+		return (ft_instructions(), PARSE_ERR);
 	if (init_data(&data))
 		return (MALLOC_ERR);
 	return (0);

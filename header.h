@@ -14,7 +14,8 @@
 # define HEADER_H
 
 // Macros
-# define MALLOC_ERR 1
+# define PARSE_ERR 1
+# define MALLOC_ERR 2
 
 # include <pthread.h>
 # include <stdio.h>
@@ -38,13 +39,13 @@ typedef struct s_data t_data;
 
 typedef struct	s_philo
 {
-	t_data	*data;
 	int	id;
 	int	nb_ate;
 	pthread_mutex_t	mt_nb_ate;
 	t_state	st;
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
+	t_data	*data;
 }	t_philo;
 
 typedef struct s_data
