@@ -14,7 +14,6 @@
 # define HEADER_H
 
 // Macros
-#include <system_error>
 # define MALLOC_ERR 1
 
 # include <pthread.h>
@@ -23,7 +22,7 @@
 # include <string.h>
 # include <sys/time.h>
 # include <unistd.h>
-# include <time.h>
+//# include <time.h>
 
 //=== Data types
 typedef enum e_state 
@@ -44,21 +43,17 @@ typedef struct	s_philo
 	int	nb_ate;
 	pthread_mutex_t	mt_nb_ate;
 	t_state	st;
-	pthread_mutex_t	mt_st;
 	pthread_mutex_t	*left_f;
 	pthread_mutex_t	*right_f;
 }	t_philo;
 
 typedef struct s_data
 {
-	time	start_time;
+	time_t	start_time;
 	int	nb_philos;
 	int	tdie;
-	pthread_mutex_t	mt_tdie;
 	int	teat;
-	pthread_mutex_t	mt_teat;
 	int	tsleep;
-	pthread_mutex_t	mt_tsleep;
 	int	nb_meals;
 	pthread_mutex_t	mt_nb_meals;
 	t_philo	*philos;

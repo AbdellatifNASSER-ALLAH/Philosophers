@@ -27,8 +27,7 @@ int	parse(int ac, char **av, t_data *data)
 	data->tsleep = ft_atoi(av[4]);
 	if (ac == 6 && ft_atoi(av[5]) < 0)
 		return (write(2, "Unexpected value!\n", 18), 0);
-	if (ac == 6)
-		data->nb_time_philo_must_eat = ft_atoi(av[5]);
+	data->nb_meals = ft_atoi(av[5]);
 	return (1);
 }
 
@@ -37,7 +36,7 @@ long	ft_atoi(char *nb)
 	long	res;
 
 	res = 0;
-	if (!(*nb && *nb >= '0' && *nb <= '9'))
+	if (!nb || !(*nb && *nb >= '0' && *nb <= '9'))
 		return (-1);
 	while (*nb && *nb >= '0' && *nb <= '9')
 		res = res * 10 + (*nb++ - 48);
