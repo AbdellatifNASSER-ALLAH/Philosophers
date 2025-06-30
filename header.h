@@ -14,6 +14,7 @@
 # define HEADER_H
 
 // Macros
+#include <system_error>
 # define MALLOC_ERR 1
 
 # include <pthread.h>
@@ -29,7 +30,8 @@ typedef enum e_state
 {
 	THINK,
 	SLEEP,
-	EAT
+	EAT,
+	DEAD
 }	t_state;
 
 
@@ -52,9 +54,13 @@ typedef struct s_data
 	time	start_time;
 	int	nb_philos;
 	int	tdie;
+	pthread_mutex_t	mt_tdie;
 	int	teat;
+	pthread_mutex_t	mt_teat;
 	int	tsleep;
+	pthread_mutex_t	mt_tsleep;
 	int	nb_meals;
+	pthread_mutex_t	mt_nb_meals;
 	t_philo	*philos;
 	pthread_mutex_t	*forks;
 }		t_data;
