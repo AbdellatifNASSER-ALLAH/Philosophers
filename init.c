@@ -48,9 +48,16 @@ int	init_philos(t_data *data)
 	while (++i < data->nb_philos)
 	{
 		p[i].data = data;
+		p[i].id = i + 1;
+		p[i].nb_ate = 0;
+		p[i].st = WAIT;
 		p[i].left_f = &f[i];
 		if (i < data->nb_philos - 1)
 			p[i].right_f = &f[i + 1];
+		else if (data->nb_philos > 1)
+			p[i].right_f = &f[0];
+		if (pthread_create(p[i], NULL, start_routine, p[i]))
+			return (PHILO_ERR);
 	}
 	return (0);
 }

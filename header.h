@@ -31,6 +31,7 @@
 //=== Data types
 typedef enum e_state
 {
+	WAIT,
 	THINK,
 	SLEEP,
 	EAT,
@@ -71,6 +72,9 @@ long					ft_atoi(char *nb);
 int						init_data(t_data *data);
 int						init_forks(t_data *data);
 int						init_philos(t_data *data);
+
+//=== Routine
+void	*start_routine(void *arg);
 
 //=== Utils
 void					free_all(t_data *data);
