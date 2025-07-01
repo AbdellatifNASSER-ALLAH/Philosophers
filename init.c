@@ -56,7 +56,7 @@ int	init_philos(t_data *data)
 			p[i].right_f = &f[i + 1];
 		else if (data->nb_philos > 1)
 			p[i].right_f = &f[0];
-		if (pthread_create(p[i], NULL, start_routine, p[i]))
+		if (pthread_create(&p[i].th, NULL, start_routine, &p[i]))
 			return (PHILO_ERR);
 	}
 	return (0);
