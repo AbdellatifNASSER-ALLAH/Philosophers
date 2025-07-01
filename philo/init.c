@@ -11,10 +11,13 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <pthread.h>
 
 int	init_data(t_data *data)
 {
+	if (pthread_mutex_init(&data->mt_print, NULL))
+		return (MUTEX_ERR);
+	if (pthread_mutex_init(&data->mt_stop, NULL))
+		return (MUTEX_ERR);
 	if (init_forks(data))
 		return (free_all(data), FORK_ERR);
 	if (init_philos(data))

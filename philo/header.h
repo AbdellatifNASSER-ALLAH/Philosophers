@@ -42,10 +42,11 @@ typedef struct s_data	t_data;
 
 typedef struct s_philo
 {
-	pthread_t			th;
-	int					id;
-	int					nb_ate;
-	t_state				st;
+	pthread_t	th;
+	int	id;
+	int	nb_ate;
+	t_state	st;
+	time_t	last_meal;
 	pthread_mutex_t		*left_f;
 	pthread_mutex_t		*right_f;
 	t_data				*data;
@@ -53,15 +54,18 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	time_t				start_time;
-	int					nb_philos;
-	int					tdie;
-	int					teat;
-	int					tsleep;
-	int					nb_meals;
-	t_philo				*philos;
-	pthread_mutex_t		*forks;
-}						t_data;
+	time_t	start_time;
+	int	nb_philos;
+	int	tdie;
+	int	teat;
+	int	tsleep;
+	int	nb_meals;
+	int	stop;
+	pthread_mutex_t	mt_stop;
+	pthread_mutex_t	mt_print;
+	t_philo	*philos;
+	pthread_mutex_t	*forks;
+}	t_data;
 
 //=== Parsing
 void					ft_instructions(void);
@@ -77,7 +81,8 @@ int						init_philos(t_data *data);
 void	*start_routine(void *arg);
 
 //=== Utils
-void					free_all(t_data *data);
-void					*ft_calloc(size_t nmemb, size_t size);
+void	cleanup(t_data *data);
+void	free_all(t_data *data);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 #endif
