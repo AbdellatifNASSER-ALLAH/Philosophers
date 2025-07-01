@@ -16,6 +16,9 @@
 // Macros
 # define PARSE_ERR 1
 # define MALLOC_ERR 2
+# define MUTEX_ERR 3
+# define FORK_ERR 4
+# define PHILO_ERR 5
 
 # include <pthread.h>
 # include <stdio.h>
@@ -68,5 +71,11 @@ long	ft_atoi(char *nb);
 
 //=== Initialisation of the Data
 int		init_data(t_data *data);
+int		init_forks(t_data *data);
+int		init_philos(t_data *data);
+
+//=== Utils
+void	free_all(t_data *data);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 #endif
