@@ -15,8 +15,6 @@
 
 int	init_data(t_data *data)
 {
-	if (pthread_mutex_init(&data->mt_nb_meals, NULL))
-		return (MUTEX_ERR);
 	if (init_forks(data))
 		return (free_all(data), FORK_ERR);
 	if (init_philos(data))
@@ -35,4 +33,24 @@ int	init_forks(t_data *data)
 	while (++i < data->nb_philos)
 		if (pthread_mutex_init(&data->forks[i], NULL))
 			return (MUTEX_ERR);
+	return (0);
+}
+
+int	init_philos(t_data *data)
+{
+	t_philo			*p;
+	pthread_mutex_t	*f;
+	int				i;
+
+	p = data->philos;
+	f = data->forks;
+	i = -1;
+	while (++i < data->nb_philos)
+	{
+		p[i].data = data;
+		p[i].left_f = &f[i];
+		if (i < data->nb_philos - 1)
+			p[i].right_f = &f[i + 1];
+	}
+	return (0);
 }

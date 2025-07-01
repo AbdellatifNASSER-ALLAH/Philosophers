@@ -23,3 +23,11 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	memset(p, 0, nmemb * size);
 	return (p);
 }
+
+void	free_all(t_data *data)
+{
+	if (data->forks)
+		free(data->forks);
+	if (data->philos)
+		free(data->philos);
+}
