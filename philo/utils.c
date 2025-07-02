@@ -10,7 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "header.h"
+#include <bits/types/struct_timeval.h>
 #include <pthread.h>
+#include <sys/time.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
@@ -50,4 +52,13 @@ void	cleanup(t_data *data)
 	while (++i < data->nb_philos)
 		pthread_join(data->philos[i].th, NULL);
 	free_all(data);
+}
+
+uint64_t	get_time(void)
+{
+	struct timeval	tv;
+
+	if (gettimeofday(&tv, NULL))
+		return (0);
+	return (((uint64_t)tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

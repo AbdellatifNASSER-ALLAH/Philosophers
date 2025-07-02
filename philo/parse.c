@@ -28,6 +28,7 @@ int	parse(int ac, char **av, t_data *data)
 	if (ac == 6 && ft_atoi(av[5]) < 0)
 		return (write(2, "Unexpected value!\n", 18), 0);
 	data->nb_meals = ft_atoi(av[5]);
+	data->start_time = get_time();
 	return (1);
 }
 

@@ -46,7 +46,7 @@ typedef struct s_philo
 	int	id;
 	int	nb_ate;
 	t_state	st;
-	time_t	last_meal;
+	uint64_t	last_meal;
 	pthread_mutex_t		*left_f;
 	pthread_mutex_t		*right_f;
 	t_data				*data;
@@ -54,7 +54,7 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	time_t	start_time;
+	uint64_t	start_time;
 	int	nb_philos;
 	int	tdie;
 	int	teat;
@@ -73,14 +73,15 @@ int						parse(int ac, char **av, t_data *data);
 long					ft_atoi(char *nb);
 
 //=== Initialisation of the Data
-int						init_data(t_data *data);
-int						init_forks(t_data *data);
-int						init_philos(t_data *data);
+int	init_data(t_data *data);
+int	init_forks(t_data *data);
+int	init_philos(t_data *data);
 
 //=== Routine
 void	*start_routine(void *arg);
 
 //=== Utils
+uint64_t	get_time(void);
 void	cleanup(t_data *data);
 void	free_all(t_data *data);
 void	*ft_calloc(size_t nmemb, size_t size);
