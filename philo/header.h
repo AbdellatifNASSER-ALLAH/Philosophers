@@ -19,6 +19,7 @@
 # define MUTEX_ERR 3
 # define FORK_ERR 4
 # define PHILO_ERR 5
+# define THREAD_ERR 6
 
 # include <pthread.h>
 # include <stdint.h>
@@ -76,6 +77,7 @@ long					ft_atoi(char *nb);
 int	init_data(t_data *data);
 int	init_forks(t_data *data);
 int	init_philos(t_data *data);
+int	init_threads(t_data *data);
 
 //=== Routine
 void	*start_routine(void *arg);
