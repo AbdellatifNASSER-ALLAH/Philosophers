@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <pthread.h>
 
 int	init_data(t_data *data)
 {
@@ -63,16 +62,5 @@ int	init_philos(t_data *data)
 		else if (data->nb_philos > 1)
 			p[i].right_f = &f[0];
 	}
-	return (0);
-}
-
-int	init_threads(t_data *data)
-{
-	int	i;
-
-	i = -1;
-	while (++i < data->nb_philos)
-		if (pthread_create(&data->philos[i].th,NULL, start_routine, &data->philos[i]))
-				return (THREAD_ERR);
 	return (0);
 }

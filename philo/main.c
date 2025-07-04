@@ -20,7 +20,7 @@ int	main(int ac, char **av)
 		return (ft_instructions(), PARSE_ERR);
 	if (init_data(&data))
 		return (MALLOC_ERR);
-	//Monitoring...
+	// dining
 	cleanup(&data);
 	return (0);
 }
