@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "header.h"
-#include <bits/types/struct_timeval.h>
-#include <pthread.h>
-#include <sys/time.h>
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

@@ -1,26 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mutex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 02:26:44 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/06/20 02:26:46 by abdnasse         ###   ########.fr       */
+/*   Created: 2025/07/06 02:38:08 by abdnasse          #+#    #+#             */
+/*   Updated: 2025/07/06 02:38:21 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-int	main(int ac, char **av)
-{
-	t_data	data;
-
-	if (!parse(ac, av, &data))
-		return (ft_instructions(), PARSE_ERR);
-	if (init_data(&data))
-		return (free_all(&data), MALLOC_ERR);
-	// dining
-	cleanup(&data);
-	return (0);
-}

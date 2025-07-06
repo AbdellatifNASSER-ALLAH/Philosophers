@@ -62,7 +62,7 @@ typedef struct s_data
 	int	tsleep;
 	int	nb_meals;
 	int	stop;
-	pthread_mutex_t	mt_stop;
+	pthread_mutex_t	mt_lock;
 	pthread_mutex_t	mt_print;
 	t_philo	*philos;
 	pthread_mutex_t	*forks;
