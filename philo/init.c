@@ -14,14 +14,11 @@
 
 int	init_data(t_data *data)
 {
-	if (pthread_mutex_init(&data->mt_print, NULL))
-		return (MUTEX_ERR);
-	if (pthread_mutex_init(&data->mt_stop, NULL))
-		return (MUTEX_ERR);
-	if (init_forks(data))
-		return (free_all(data), FORK_ERR);
-	if (init_philos(data))
-		return (free_all(data), PHILO_ERR);
+	data->stop = 1;
+	mutex_init(&data->mt_print);
+	mutex_init(&data->mt_lock);
+	init_forks(data);
+	init_philos(data);
 	return (0);
 }
 
@@ -30,38 +27,42 @@ int	init_forks(t_data *data)
 	int	i;
 
 	data->forks = ft_calloc(sizeof(pthread_mutex_t), data->nb_philos);
-	if (!data->forks)
-		return (FORK_ERR);
 	i = -1;
 	while (++i < data->nb_philos)
-		if (pthread_mutex_init(&data->forks[i], NULL))
-			return (MUTEX_ERR);
+		mutex_init(&data->forks[i]);
 	return (0);
 }
 
 int	init_philos(t_data *data)
 {
-	t_philo			*p;
 	pthread_mutex_t	*f;
-	int				i;
+	int		i;
 
-	p = data->philos;
-	p = ft_calloc(sizeof(t_philo), data->nb_philos);
-	if (p == NULL)
-		return (PHILO_ERR);
+	data->philos = ft_calloc(sizeof(t_philo), data->nb_philos);
 	f = data->forks;
 	i = -1;
 	while (++i < data->nb_philos)
 	{
-		p[i].data = data;
-		p[i].id = i + 1;
-		p[i].nb_ate = 0;
-		p[i].st = WAIT;
-		p[i].left_f = &f[i];
+		data->philos[i].data = data;
+		data->philos[i].id = i + 1;
+		data->philos[i].nb_ate = 0;
+		data->philos[i].st = WAIT;
+		data->philos[i].last_meal = 0;
+		data->philos[i].left_f = &f[i];
 		if (i < data->nb_philos - 1)
-			p[i].right_f = &f[i + 1];
+			data->philos[i].right_f = &f[i + 1];
 		else if (data->nb_philos > 1)
-			p[i].right_f = &f[0];
+			data->philos[i].right_f = &f[0];
 	}
 	return (0);
+}
+
+void	run_philos(t_philo *p)
+{
+	int	i;
+
+	i = -1;
+	while(++i < p->data->nb_philos)
+		create_philo(p[i]);
+	p->data->stop = 0;	
 }

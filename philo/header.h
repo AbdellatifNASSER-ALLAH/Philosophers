@@ -13,6 +13,8 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+#define RED     "\033[1;31m"
+#define RESET   "\033[0m"
 // Macros
 # define PARSE_ERR 1
 # define MALLOC_ERR 2
@@ -47,44 +49,51 @@ typedef struct s_philo
 	int	id;
 	int	nb_ate;
 	t_state	st;
-	uint64_t	last_meal;
+	long	last_meal;
 	pthread_mutex_t		*left_f;
 	pthread_mutex_t		*right_f;
-	t_data				*data;
-}						t_philo;
+	t_data			*data;
+}				t_philo;
 
 typedef struct s_data
 {
-	uint64_t	start_time;
-	int	nb_philos;
-	int	tdie;
-	int	teat;
-	int	tsleep;
-	int	nb_meals;
-	int	stop;
+	long	start_time;
+	long	nb_philos;
+	long	tdie;
+	long	teat;
+	long	tsleep;
+	long	nb_meals;
+	long	stop;
 	pthread_mutex_t	mt_lock;
 	pthread_mutex_t	mt_print;
 	t_philo	*philos;
 	pthread_mutex_t	*forks;
 }	t_data;
+//=== Wrappers
+void	mutex_init(pthread_mutex_t *mutex);
+void	create_philo(t_philo p);
 
 //=== Parsing
-void					ft_instructions(void);
-int						parse(int ac, char **av, t_data *data);
-long					ft_atoi(char *nb);
+void	ft_instructions(void);
+int	parse(int ac, char **av, t_data *data);
+long	ft_atoi(char *nb);
 
 //=== Initialisation of the Data
 int	init_data(t_data *data);
 int	init_forks(t_data *data);
 int	init_philos(t_data *data);
+void	run_philos(t_philo *p);
 
-//=== Routine
+//=== The dining 
+void	the_table(t_data *data);
 void	*start_routine(void *arg);
 
-//=== Utils
-uint64_t	get_time(void);
+//=== Cleaning up
+long	get_time(void);
 void	cleanup(t_data *data);
+
+//=== Utils
 void	free_all(t_data *data);
-void	*ft_calloc(size_t nmemb, size_t size);
+void	*ft_calloc(size_t nmemb, size_t size); void	err_exit(const char *error);
 
 #endif

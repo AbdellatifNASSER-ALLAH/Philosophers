@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,30 +11,29 @@
 /* ************************************************************************** */
 #include "header.h"
 
-void	*ft_calloc(size_t nmemb, size_t size)
+void	free_all(t_data *data)
 {
-	void	*p;
+	int	i;
 
-	if (size && nmemb > SIZE_MAX / size)
-		err_exit("ft_calloc error ! size");
-	p = (unsigned char *)malloc(nmemb * size);
-	if (!p)
-		err_exit("ft_calloc malloc error!");
-	memset(p, 0, nmemb * size);
-	return (p);
+	i = -1;
+	if (data->forks)
+	{
+		while (++i < data->nb_philos)
+			pthread_mutex_destroy(&data->forks[i]);
+		free(data->forks);
+	}
+	if (data->philos)
+		free(data->philos);
+	pthread_mutex_destroy(&data->mt_lock);
+	pthread_mutex_destroy(&data->mt_print);
 }
 
-long	get_time(void)
+void	cleanup(t_data *data)
 {
-	struct timeval	tv;
+	int	i;
 
-	if (gettimeofday(&tv, NULL))
-		err_exit("gettimeofday error!");
-	return (((long)tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
-
-void	err_exit(const char *error)
-{
-	printf(RED"\n	%s\n"RESET, error);
-	exit(EXIT_FAILURE);
+	i = -1;
+	while (++i < data->nb_philos)
+		pthread_join(data->philos[i].th, NULL);
+	free_all(data);
 }

@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   data_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/20 02:26:44 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/06/20 02:26:46 by abdnasse         ###   ########.fr       */
+/*   Created: 2025/07/06 02:38:08 by abdnasse          #+#    #+#             */
+/*   Updated: 2025/07/06 02:38:21 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(int ac, char **av)
+long	get_value(long *value, t_data *data)
 {
-	t_data	data;
+	long	ret;
 
-	if (!parse(ac, av, &data))
-		return (ft_instructions(), PARSE_ERR);
-	init_data(&data);
-	the_table(&data);
-	cleanup(&data);
-	return (0);
+	pthread_mutex_lock(&data->mt_lock);
+	ret = *value;
+	pthread_mutex_unlock(&data->mt_lock);
+	return (ret);
+}
+
+void	set_value(long value, long *to, t_data *data)
+{
+	pthread_mutex_lock(&data->mt_lock);
+	*to = value;
+	pthread_mutex_unlock(&data->mt_lock);
 }
