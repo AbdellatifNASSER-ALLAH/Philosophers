@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/10 12:42:23 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:46:15 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@ int	init_philos(t_data *data);
 void	run_philos(t_philo *p);
 
 //=== The dining 
-void	the_table(t_data *data);
 void	*start_routine(void *arg);
 
 //=== Cleaning up

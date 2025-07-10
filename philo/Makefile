@@ -2,7 +2,7 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread -g
 
-SRC = main.c parse.c init.c utils.c table.c cleanup.c wrappers.c data_utils.c\
+SRC = main.c parse.c init.c utils.c routine.c cleanup.c wrappers.c data_utils.c\
       forks.c
 OBJ = $(SRC:.c=.o)
 

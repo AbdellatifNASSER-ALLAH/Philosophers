@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   table.c                                            :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:11:46 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/07 15:15:16 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/10 13:45:19 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ void	wait_threads(t_philo p)
 	set_value(get_time(), &p.data->start_time, p.data);
 }
 
-void	the_table(t_data *data)
-{	
-	run_philos(data->philos);
-}
-
 void	*start_routine(void *arg)
 {
 	t_philo	ph;
@@ -33,6 +28,7 @@ void	*start_routine(void *arg)
 	while(1)
 	{
 		grap_forks(ph);
+
 	}
 	return (NULL);
 }
