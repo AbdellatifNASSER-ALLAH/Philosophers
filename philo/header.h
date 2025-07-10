@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/06/20 02:29:48 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/10 12:42:23 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@ typedef struct s_data
 	t_philo	*philos;
 	pthread_mutex_t	*forks;
 }	t_data;
+
+//=== data Utils
+long	get_value(long *value, t_data *data);
+void	set_value(long value, long *to, t_data *data);
+
+//=== Helpers
+void	grap_forks(t_philo p);
+
 //=== Wrappers
 void	mutex_init(pthread_mutex_t *mutex);
 void	create_philo(t_philo p);
