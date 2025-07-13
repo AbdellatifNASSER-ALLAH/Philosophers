@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/10 13:46:15 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:18:13 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_philo
 {
 	pthread_t	th;
 	int	id;
-	int	nb_ate;
+	long	nb_ate;
 	t_state	st;
 	long	last_meal;
 	pthread_mutex_t		*left_f;
@@ -69,17 +69,25 @@ typedef struct s_data
 	t_philo	*philos;
 	pthread_mutex_t	*forks;
 }	t_data;
+//=== Philo habits
+void	eat_philo(t_philo *ph);
+void	sleep_philo(t_philo *ph);
+void	think_philo(t_philo *ph);
 
 //=== data Utils
 long	get_value(long *value, t_data *data);
 void	set_value(long value, long *to, t_data *data);
+void	set_state(t_state st, t_philo *ph);
+t_state	get_state(t_philo *ph);
+void	print_state(t_philo *ph);
 
 //=== Helpers
-void	grap_forks(t_philo p);
+void	grab_forks(t_philo *p);
+void	put_down_forks(t_philo *ph);
 
 //=== Wrappers
 void	mutex_init(pthread_mutex_t *mutex);
-void	create_philo(t_philo p);
+void	create_philo(t_philo *p);
 
 //=== Parsing
 void	ft_instructions(void);
@@ -96,11 +104,12 @@ void	run_philos(t_philo *p);
 void	*start_routine(void *arg);
 
 //=== Cleaning up
-long	get_time(void);
 void	cleanup(t_data *data);
 
 //=== Utils
 void	free_all(t_data *data);
 void	*ft_calloc(size_t nmemb, size_t size); void	err_exit(const char *error);
+void	sleep_time(t_philo *ph);
+long	get_time(void);
 
 #endif

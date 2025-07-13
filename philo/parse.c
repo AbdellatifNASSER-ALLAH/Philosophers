@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:10 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/06/20 02:29:15 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/13 01:58:21 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ void	ft_instructions(void)
 	write(2, "number_of_philosophers", 22);
 	write(2, " time_to_die", 12);
 	write(2, " time_to_eat", 12);
-	write(2, " time_to_sleep", 13);
+	write(2, " time_to_sleep", 14);
 	write(2, " [number_of_times_each_philosopher_must_eat] \n", 46);
 }

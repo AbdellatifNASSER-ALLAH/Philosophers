@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 23:38:53 by abdnasse          #+#    #+#             */
-/*   Updated: 2024/11/08 23:14:22 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/13 02:17:08 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "header.h"
@@ -31,6 +31,21 @@ long	get_time(void)
 	if (gettimeofday(&tv, NULL))
 		err_exit("gettimeofday error!");
 	return (((long)tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
+
+void	sleep_time(t_philo *ph)
+{
+	long	start;
+	long	duration;
+
+	duration = 0;
+	if (get_state(ph) == EAT)
+		duration = get_value(&ph->data->teat, ph->data);
+	else if (get_state(ph) == SLEEP)
+		duration = get_value(&ph->data->tsleep, ph->data);
+	start = get_time();
+	while ((get_time() - start) < duration && !get_value(&ph->data->stop, ph->data))
+		usleep(100);
 }
 
 void	err_exit(const char *error)
