@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/13 02:18:13 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:20:05 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ typedef enum e_state
 	THINK,
 	SLEEP,
 	EAT,
-	DEAD
+	DEAD,
+	FULL,
+	READY
 }	t_state;
 
 typedef struct s_data	t_data;
@@ -99,9 +101,11 @@ int	init_data(t_data *data);
 int	init_forks(t_data *data);
 int	init_philos(t_data *data);
 void	run_philos(t_philo *p);
+void	run_monitor(t_data *data);
 
 //=== The dining 
 void	*start_routine(void *arg);
+void	*monitor_routine(void *arg);
 
 //=== Cleaning up
 void	cleanup(t_data *data);

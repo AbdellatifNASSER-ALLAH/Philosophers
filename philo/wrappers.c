@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:03:58 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/13 02:08:31 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:43:26 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	mutex_init(pthread_mutex_t *mutex)
 void	create_philo(t_philo *p)
 {
 	if (pthread_create(&p->th, NULL, start_routine, p))
-		err_exit("pthread_create failed !");
+		err_exit("pthread_create philo failed !");
+	p->last_meal = get_time();
 }
 

@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:11:46 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/13 01:53:50 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:12:21 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ void	*start_routine(void *arg)
 	t_philo	*ph;
 
 	ph = (t_philo *)arg;
-	while(1)
+	if (ph->id % 2 == 0)
+		usleep(100);
+	while (!get_value(&ph->data->stop, ph->data))
 	{
 		grab_forks(ph);
 		eat_philo(ph);
 		put_down_forks(ph);
 		sleep_philo(ph);
 		think_philo(ph);
-
 	}
 	return (NULL);
 }

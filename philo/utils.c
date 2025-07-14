@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 23:38:53 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/13 02:17:08 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:05:39 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "header.h"
@@ -45,7 +45,7 @@ void	sleep_time(t_philo *ph)
 		duration = get_value(&ph->data->tsleep, ph->data);
 	start = get_time();
 	while ((get_time() - start) < duration && !get_value(&ph->data->stop, ph->data))
-		usleep(100);
+		usleep(500);
 }
 
 void	err_exit(const char *error)

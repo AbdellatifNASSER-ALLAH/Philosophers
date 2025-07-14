@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:29:30 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/11 16:15:52 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 11:41:41 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ int	init_philos(t_data *data)
 		data->philos[i].id = i + 1;
 		data->philos[i].nb_ate = 0;
 		data->philos[i].st = WAIT;
-		data->philos[i].last_meal = 0;
 		data->philos[i].left_f = &f[i];
 		if (i < data->nb_philos - 1)
 			data->philos[i].right_f = &f[i + 1];
-		else if (data->nb_philos > 1)
+		else if (data->nb_philos >= 1)
 			data->philos[i].right_f = &f[0];
 	}
 	return (0);

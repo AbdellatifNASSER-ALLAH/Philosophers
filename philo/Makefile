@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread -g
 
 SRC = main.c parse.c init.c utils.c routine.c cleanup.c wrappers.c data_utils.c\
-      forks.c print_state.c philo_habits.c 
+      forks.c print_state.c philo_habits.c monitor.c
 OBJ = $(SRC:.c=.o)
 
 

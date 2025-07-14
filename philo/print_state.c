@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:25:10 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/13 01:55:16 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 12:23:52 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_state(t_philo *ph)
 {
-	char	*msg[5];
+	char	*msg[6];
 	t_state	st;
 	long	time;
 
@@ -23,10 +23,13 @@ void	print_state(t_philo *ph)
 	msg[SLEEP] = "is sleeping";
 	msg[EAT] = "is eating";
 	msg[DEAD] = "died";
+	msg[FULL] = "died";
 	pthread_mutex_lock(&ph->data->mt_print);
 	time = get_time() - get_value(&ph->data->start_time, ph->data);
 	st = get_state(ph);
 	if (!get_value(&ph->data->stop, ph->data) || st == DEAD)
 		printf("%ld philo %d %s\n", time, ph->id, msg[st]);
+	if (FULL == st)
+		printf("All philosophers are FULL\n");
 	pthread_mutex_unlock(&ph->data->mt_print);
 }

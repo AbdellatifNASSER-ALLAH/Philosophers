@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:10 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/13 01:58:21 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 14:04:36 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 int	parse(int ac, char **av, t_data *data)
 {
-	int	check;
+	int	i;
 
 	if (!(ac > 4 && ac < 7))
 		return (0);
-	check = ft_atoi(av[1]) * ft_atoi(av[2]) * ft_atoi(av[3]) * ft_atoi(av[4]);
-	if (check <= 0)
-		return (write(2, "Unexpected value!\n", 18), 0);
+	i = 0;
+	while (++i < 5)
+		if (ft_atoi(av[i]) <= 0)
+			return (write(2, "Unexpected value!\n", 18), 0);
 	data->nb_philos = ft_atoi(av[1]);
 	data->tdie = ft_atoi(av[2]);
 	data->teat = ft_atoi(av[3]);
@@ -39,6 +40,7 @@ long	ft_atoi(char *nb)
 	res = 0;
 	if (!nb || !(*nb && *nb >= '0' && *nb <= '9'))
 		return (-1);
+	//TODO: handle the lenth of the nb so not overflows
 	while (*nb && *nb >= '0' && *nb <= '9')
 		res = res * 10 + (*nb++ - 48);
 	if (*nb || res > 2147483647 || res < 0)
