@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:29:30 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/14 11:41:41 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 16:03:11 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	run_philos(t_philo *p)
 {
 	int	i;
 
+	set_value(get_time(), &p->data->start_time, p->data);
 	i = -1;
 	while(++i < p->data->nb_philos)
 		create_philo(&p[i]);
-	set_value(get_time(), &p->data->start_time, p->data);
 }

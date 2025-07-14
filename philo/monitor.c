@@ -6,12 +6,11 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:43:19 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/14 12:35:05 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:38:10 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-#include <pthread.h>
 
 static	long	philo_age(long	now, t_philo ph);
 static	int	philos_full(t_philo *ph, long nb_philos);
@@ -40,9 +39,9 @@ void	*monitor_routine(void *arg)
 		while (++i < data->nb_philos)
 			if (philo_age(now, data->philos[i]) > data->tdie)
 			{
+				set_value(1, &data->stop, data);
 				set_state(DEAD, &data->philos[i]);
 				print_state(&data->philos[i]);
-				set_value(1, &data->stop, data);
 				return (NULL);
 			}
 		if (data->nb_meals > 0 && philos_full(data->philos, data->nb_philos))
