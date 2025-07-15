@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:43:19 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/14 15:38:10 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/15 14:53:15 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void	*monitor_routine(void *arg)
 		while (++i < data->nb_philos)
 			if (philo_age(now, data->philos[i]) > data->tdie)
 			{
+				if(get_value(&data->stop, data))
+					return (NULL);
 				set_value(1, &data->stop, data);
 				set_state(DEAD, &data->philos[i]);
 				print_state(&data->philos[i]);
@@ -55,12 +57,16 @@ static	int	philos_full(t_philo *ph, long nb_philos)
 {
 	int	 i;
 
+	if(get_value(&ph->data->stop, ph->data))
+		return (1);
 	i = -1;
 	while (++i < nb_philos)
 		if (FULL != get_state(&ph[i]))
 			return (0);
-	print_state(ph);
 	set_value(1, &ph->data->stop, ph->data);
+	pthread_mutex_lock(&ph->data->mt_print);
+	printf("All philosophers are FULL\n");
+	pthread_mutex_unlock(&ph->data->mt_print);
 	return (1);
 }
 
