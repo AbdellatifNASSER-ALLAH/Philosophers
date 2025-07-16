@@ -54,7 +54,7 @@ static int	is_valid(char *n)
 	int	len;
 
 	len = 0;
-	while (*n &&  *n == '0')
+	while (*n && *n == '0')
 		n++;
 	while (*n && *n >= '0' && *n <= '9')
 	{

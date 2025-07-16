@@ -6,15 +6,15 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/14 12:20:05 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:41:16 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEADER_H
 # define HEADER_H
 
-#define RED     "\033[1;31m"
-#define RESET   "\033[0m"
+# define RED "\033[1;31m"
+# define RESET "\033[0m"
 // Macros
 # define PARSE_ERR 1
 # define MALLOC_ERR 2
@@ -41,79 +41,81 @@ typedef enum e_state
 	DEAD,
 	FULL,
 	READY
-}	t_state;
+}						t_state;
 
 typedef struct s_data	t_data;
 
 typedef struct s_philo
 {
-	pthread_t	th;
-	int	id;
-	long	nb_ate;
-	t_state	st;
-	long	last_meal;
+	pthread_t			th;
+	int					id;
+	long				nb_ate;
+	t_state				st;
+	long				last_meal;
+	long				has_forks;
 	pthread_mutex_t		*left_f;
 	pthread_mutex_t		*right_f;
-	t_data			*data;
-}				t_philo;
+	t_data				*data;
+}						t_philo;
 
 typedef struct s_data
 {
-	long	start_time;
-	long	nb_philos;
-	long	tdie;
-	long	teat;
-	long	tsleep;
-	long	nb_meals;
-	long	stop;
-	pthread_mutex_t	mt_lock;
-	pthread_mutex_t	mt_print;
-	t_philo	*philos;
-	pthread_mutex_t	*forks;
-}	t_data;
+	long				start_time;
+	long				nb_philos;
+	long				tdie;
+	long				teat;
+	long				tsleep;
+	long				nb_meals;
+	long				stop;
+	pthread_mutex_t		mt_lock;
+	pthread_mutex_t		mt_print;
+	t_philo				*philos;
+	pthread_mutex_t		*forks;
+}						t_data;
 //=== Philo habits
-void	eat_philo(t_philo *ph);
-void	sleep_philo(t_philo *ph);
-void	think_philo(t_philo *ph);
+void					eat_philo(t_philo *ph);
+void					sleep_philo(t_philo *ph);
+void					think_philo(t_philo *ph);
 
 //=== data Utils
-long	get_value(long *value, t_data *data);
-void	set_value(long value, long *to, t_data *data);
-void	set_state(t_state st, t_philo *ph);
-t_state	get_state(t_philo *ph);
-void	print_state(t_philo *ph);
+long					get_value(long *value, t_data *data);
+void					set_value(long value, long *to, t_data *data);
+void					set_state(t_state st, t_philo *ph);
+t_state					get_state(t_philo *ph);
+void					print_state(t_philo *ph);
 
 //=== Helpers
-void	grab_forks(t_philo *p);
-void	put_down_forks(t_philo *ph);
+void					grab_forks(t_philo *p);
+void					put_down_forks(t_philo *ph);
 
 //=== Wrappers
-void	mutex_init(pthread_mutex_t *mutex);
-void	create_philo(t_philo *p);
+void					mutex_init(pthread_mutex_t *mutex);
+void					create_philo(t_philo *p);
 
 //=== Parsing
-void	ft_instructions(void);
-int	parse(int ac, char **av, t_data *data);
-long	ft_atoi(char *nb);
+void					ft_instructions(void);
+int						parse(int ac, char **av, t_data *data);
+long					ft_atoi(char *nb);
 
 //=== Initialisation of the Data
-int	init_data(t_data *data);
-int	init_forks(t_data *data);
-int	init_philos(t_data *data);
-void	run_philos(t_philo *p);
-void	run_monitor(t_data *data);
+int						init_data(t_data *data);
+int						init_forks(t_data *data);
+int						init_philos(t_data *data);
+void					run_philos(t_philo *p);
+void					run_monitor(t_data *data);
 
-//=== The dining 
-void	*start_routine(void *arg);
-void	*monitor_routine(void *arg);
+//=== The dining
+void					*start_routine(void *arg);
+void					*monitor_routine(void *arg);
 
 //=== Cleaning up
-void	cleanup(t_data *data);
+void					cleanup(t_data *data);
 
 //=== Utils
-void	free_all(t_data *data);
-void	*ft_calloc(size_t nmemb, size_t size); void	err_exit(const char *error);
-void	sleep_time(t_philo *ph);
-long	get_time(void);
+void					free_all(t_data *data);
+void					*ft_calloc(size_t nmemb, size_t size);
+void					err_exit(const char *error);
+void					sleep_time(t_philo *ph);
+long					get_time(void);
 
 #endif

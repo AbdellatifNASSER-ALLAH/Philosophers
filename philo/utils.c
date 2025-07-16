@@ -44,12 +44,13 @@ void	sleep_time(t_philo *ph)
 	else if (get_state(ph) == SLEEP)
 		duration = get_value(&ph->data->tsleep, ph->data);
 	start = get_time();
-	while ((get_time() - start) < duration && !get_value(&ph->data->stop, ph->data))
+	while ((get_time() - start) < duration && !get_value(&ph->data->stop,
+			ph->data))
 		usleep(500);
 }
 
 void	err_exit(const char *error)
 {
-	printf(RED"\n	%s\n"RESET, error);
+	printf(RED "\n	%s\n" RESET, error);
 	exit(EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:38:33 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/14 15:38:43 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/16 11:45:33 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	grab_forks(t_philo *p)
 		lock_left(p);
 		lock_right(p);
 	}
+	set_value(1, &p->has_forks, p->data);
 	set_state(READY, p);
 }
 
@@ -44,10 +45,14 @@ void	put_down_forks(t_philo *ph)
 			usleep(500);
 		return ;
 	}
-	if (pthread_mutex_unlock(ph->right_f))
-		err_exit("Error: unlocking right fork failed!");
-	if (pthread_mutex_unlock(ph->left_f))
-		err_exit("Error: unlocking left fork failed!");
+	if (get_value(&ph->has_forks, ph->data))
+	{
+		if (pthread_mutex_unlock(ph->right_f))
+			err_exit("Error: unlocking right fork failed!");
+		if (pthread_mutex_unlock(ph->left_f))
+			err_exit("Error: unlocking left fork failed!");
+		set_value(0, &ph->has_forks, ph->data);
+	}
 }
 
 static	void	lock_left(t_philo *p)
