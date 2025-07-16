@@ -6,12 +6,12 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 14:11:46 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/16 11:55:12 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/16 12:19:40 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
+//TODO: ./philo 5 800 200 200 test this one and see other tests 
 void	*start_routine(void *arg)
 {
 	t_philo	*ph;
