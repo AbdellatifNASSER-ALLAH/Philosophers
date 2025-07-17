@@ -6,13 +6,13 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:43:19 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/16 12:00:21 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:37:26 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static long	philo_age(long now, t_philo ph);
+static int	philo_died(long now, t_philo ph);
 static int	philos_full(t_philo *ph, long nb_philos);
 
 void	run_monitor(t_data *data)
@@ -37,13 +37,15 @@ void	*monitor_routine(void *arg)
 		i = -1;
 		now = get_time();
 		while (++i < data->nb_philos)
-			if (philo_age(now, data->philos[i]) > data->tdie)
+		{
+			if (philo_died(now, data->philos[i]))
 			{
 				set_value(1, &data->stop, data);
 				set_state(DEAD, &data->philos[i]);
 				print_state(&data->philos[i]);
 				return (NULL);
 			}
+		}
 		if (data->nb_meals > 0 && philos_full(data->philos, data->nb_philos))
 			return (NULL);
 		usleep(1000);
@@ -68,10 +70,12 @@ static int	philos_full(t_philo *ph, long nb_philos)
 	return (1);
 }
 
-static long	philo_age(long now, t_philo ph)
+static int	philo_died(long now, t_philo ph)
 {
-	long	last_meal;
+	long	age;
 
-	last_meal = get_value(&ph.last_meal, ph.data);
-	return (now - last_meal);
+	age = now - get_value(&ph.last_meal, ph.data);
+	if (age > ph.data->tdie)
+		return (1);
+	return (0);
 }

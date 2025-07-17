@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:25:10 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/17 14:09:18 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/17 16:54:11 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	print_state(t_philo *ph)
 	msg[DEAD] = "died";
 	if (FULL == get_state(ph))
 		return ;
-	time = get_time() - get_value(&ph->data->start_time, ph->data);
 	st = get_state(ph);
+	time = get_time() - ph->data->start_time;
 	if (st != DEAD && !get_value(&ph->data->stop, ph->data))
 		printf("%ld %d %s\n", time, ph->id, msg[st]);
 	else if (st == DEAD)
