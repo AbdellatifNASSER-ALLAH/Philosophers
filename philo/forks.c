@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 12:38:33 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/16 11:45:33 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:36:13 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	grab_forks(t_philo *p)
 	if (FULL == get_state(p) || DEAD == get_state(p))
 		return ;
 	if (p->left_f == p->right_f)
-		return (lock_left(p));
+	{
+		lock_left(p);
+		while (!get_value(&p->data->stop, p->data))
+			usleep(500);
+		return ;
+	}
 	if (p->id % 2 == 0)
 	{
 		lock_right(p);
@@ -41,8 +46,6 @@ void	put_down_forks(t_philo *ph)
 	{
 		if (pthread_mutex_unlock(ph->left_f))
 			err_exit("Error: unlocking left fork failed!");
-		while (!get_value(&ph->data->stop, ph->data))
-			usleep(500);
 		return ;
 	}
 	if (get_value(&ph->has_forks, ph->data))

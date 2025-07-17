@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/10 16:25:10 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/16 10:47:16 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:09:18 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	print_state(t_philo *ph)
 	time = get_time() - get_value(&ph->data->start_time, ph->data);
 	st = get_state(ph);
 	if (st != DEAD && !get_value(&ph->data->stop, ph->data))
-		printf("%ld philo %d %s\n", time, ph->id, msg[st]);
+		printf("%ld %d %s\n", time, ph->id, msg[st]);
 	else if (st == DEAD)
-		printf("%ld philo %d %s\n", time, ph->id, msg[st]);
+		printf("%ld %d %s\n", time, ph->id, msg[st]);
 	pthread_mutex_unlock(&ph->data->mt_print);
 }
