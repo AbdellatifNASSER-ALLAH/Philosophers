@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:29:30 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/17 16:44:35 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/18 15:00:52 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	init_philos(t_data *data)
 	int				i;
 
 	data->philos = ft_calloc(sizeof(t_philo), data->nb_philos);
+	if (NULL == data->philos)
+		return (MALLOC_ERR);
 	f = data->forks;
 	i = -1;
 	while (++i < data->nb_philos)

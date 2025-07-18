@@ -20,9 +20,9 @@ void	run_monitor(t_data *data)
 	pthread_t	th;
 
 	if (pthread_create(&th, NULL, monitor_routine, data))
-		err_exit("pthread create monitor faild!");
+		print_err("pthread create monitor faild!");
 	if (pthread_join(th, NULL))
-		err_exit("pthread join monitor faild!");
+		print_err("pthread join monitor faild!");
 }
 
 void	*monitor_routine(void *arg)

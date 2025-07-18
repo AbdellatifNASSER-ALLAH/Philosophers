@@ -6,9 +6,12 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/16 11:41:16 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/18 16:32:57 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+//TODO: sed -i 's/print_err("\([^"]*\)")/print_err("\1", data)/g' *
 
 #ifndef HEADER_H
 # define HEADER_H
@@ -114,7 +117,7 @@ void					cleanup(t_data *data);
 //=== Utils
 void					free_all(t_data *data);
 void					*ft_calloc(size_t nmemb, size_t size);
-void					err_exit(const char *error);
+void					print_err(const char *error);
 void					sleep_time(t_philo *ph);
 long					get_time(void);
 

@@ -15,12 +15,12 @@
 void	mutex_init(pthread_mutex_t *mutex)
 {
 	if (pthread_mutex_init(mutex, NULL))
-		err_exit("mutex init failed !");
+		print_err("mutex init failed !");
 }
 
 void	create_philo(t_philo *p)
 {
 	p->last_meal = get_time();
 	if (pthread_create(&p->th, NULL, start_routine, p))
-		err_exit("pthread_create philo failed !");
+		print_err("pthread_create philo failed !");
 }

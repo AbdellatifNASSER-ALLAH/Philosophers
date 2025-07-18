@@ -45,15 +45,15 @@ void	put_down_forks(t_philo *ph)
 	if (ph->left_f == ph->right_f)
 	{
 		if (pthread_mutex_unlock(ph->left_f))
-			err_exit("Error: unlocking left fork failed!");
+			print_err("Error: unlocking left fork failed!");
 		return ;
 	}
 	if (get_value(&ph->has_forks, ph->data))
 	{
 		if (pthread_mutex_unlock(ph->right_f))
-			err_exit("Error: unlocking right fork failed!");
+			print_err("Error: unlocking right fork failed!");
 		if (pthread_mutex_unlock(ph->left_f))
-			err_exit("Error: unlocking left fork failed!");
+			print_err("Error: unlocking left fork failed!");
 		set_value(0, &ph->has_forks, ph->data);
 	}
 }
@@ -61,7 +61,7 @@ void	put_down_forks(t_philo *ph)
 static	void	lock_left(t_philo *p)
 {
 	if (pthread_mutex_lock(p->left_f))
-		err_exit("Error: mutex lock left fork faild!");
+		print_err("Error: mutex lock left fork faild!");
 	set_state(WAIT, p);
 	print_state(p);
 }
@@ -69,7 +69,7 @@ static	void	lock_left(t_philo *p)
 static	void	lock_right(t_philo *p)
 {
 	if (pthread_mutex_lock(p->right_f))
-		err_exit("Error: mutex lock right fork faild!");
+		print_err("Error: mutex lock right fork faild!");
 	set_state(WAIT, p);
 	print_state(p);
 }

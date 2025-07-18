@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:26:44 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/14 09:42:13 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/18 14:58:24 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
+	if (ac == 6 && ft_atoi(av[5]) == 0)
+			return (0);
 	if (!parse(ac, av, &data))
 		return (ft_instructions(), PARSE_ERR);
 	init_data(&data);
