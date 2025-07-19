@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:43:19 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/19 12:03:01 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/19 13:51:59 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	*monitor_routine(void *arg)
 		now = get_time();
 		while (++i < data->nb_philos)
 		{
-			if (philo_died(now, data->philos[i]))
+			if (FULL != get_state(&data->philos[i])
+				&& philo_died(now, data->philos[i]))
 			{
 				set_value(1, &data->stop, data);
 				set_state(DEAD, &data->philos[i]);
