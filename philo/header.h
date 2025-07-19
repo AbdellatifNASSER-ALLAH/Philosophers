@@ -6,12 +6,9 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/19 11:48:47 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:21:40 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
-//TODO: sed -i 's/print_err("\([^"]*\)")/print_err("\1", data)/g' *
 
 #ifndef HEADER_H
 # define HEADER_H

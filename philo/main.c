@@ -17,7 +17,7 @@ int	main(int ac, char **av)
 	t_data	data;
 
 	if (ac == 6 && ft_atoi(av[5]) == 0)
-			return (0);
+		return (0);
 	if (!parse(ac, av, &data))
 		return (ft_instructions(), PARSE_ERR);
 	init_data(&data);
