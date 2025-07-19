@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:29:35 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/18 16:32:57 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/19 11:48:47 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void					cleanup(t_data *data);
 //=== Utils
 void					free_all(t_data *data);
 void					*ft_calloc(size_t nmemb, size_t size);
-void					print_err(const char *error);
+void					print_err(const char *error, t_data *data);
 void					sleep_time(t_philo *ph);
 long					get_time(void);
 

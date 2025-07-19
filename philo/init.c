@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:29:30 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/18 15:00:52 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:10:38 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	init_forks(t_data *data)
 	int	i;
 
 	data->forks = ft_calloc(sizeof(pthread_mutex_t), data->nb_philos);
+	if (NULL == data->forks)
+		return (FORK_ERR);
 	i = -1;
 	while (++i < data->nb_philos)
 		mutex_init(&data->forks[i]);

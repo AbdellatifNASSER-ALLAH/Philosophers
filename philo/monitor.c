@@ -6,7 +6,7 @@
 /*   By: abdnasse <abdnasse@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:43:19 by abdnasse          #+#    #+#             */
-/*   Updated: 2025/07/17 17:37:26 by abdnasse         ###   ########.fr       */
+/*   Updated: 2025/07/19 12:03:01 by abdnasse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	run_monitor(t_data *data)
 	pthread_t	th;
 
 	if (pthread_create(&th, NULL, monitor_routine, data))
-		print_err("pthread create monitor faild!");
+		return (print_err("pthread create monitor faild!", data));
 	if (pthread_join(th, NULL))
-		print_err("pthread join monitor faild!");
+		return (print_err("pthread join monitor faild!", data));
 }
 
 void	*monitor_routine(void *arg)
